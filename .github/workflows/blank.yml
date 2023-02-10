@@ -28,9 +28,7 @@ jobs:
         mkdir -p /tmp/upload/
         cp ./accelerated-domains.china.raw.txt /tmp/upload/
 
-    - name : Upload packages
-      uses: actions/upload-artifact@master
-      if: always()
+    - name : Upload Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: dnsmasq-china-list-smartdns
-        path: /tmp/upload//accelerated-domains.china.raw.txt
+        files: /tmp/upload//accelerated-domains.china.raw.txt
