@@ -25,10 +25,12 @@ jobs:
         git clone --depth=1 https://github.com/felixonmars/dnsmasq-china-list.git
         cd dnsmasq-china-list
         make raw
+        mkdir -p /tmp/upload/
+        cp ./accelerated-domains.china.raw.txt /tmp/upload/
 
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: dnsmasq-china-list-smartdns
-        path: /dnsmasq-china-list/accelerated-domains.china.raw.txt
+        path: /tmp/upload//accelerated-domains.china.raw.txt
