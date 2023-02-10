@@ -31,4 +31,4 @@ jobs:
       if: always()
       with:
         name: dnsmasq-china-list-smartdns
-        path: /opt/dnsmasq-china-list/accelerated-domains.china.raw.txt
+        path: /dnsmasq-china-list/accelerated-domains.china.raw.txt
