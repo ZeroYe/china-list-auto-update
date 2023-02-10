@@ -22,7 +22,7 @@ jobs:
     - name: Clone source code
 
       run: |
-        git clone --depth=1 https://github.com/felixonmars/dnsmasq-china-list.git /opt/dnsmasq-china-list
+        git clone --depth=1 https://github.com/felixonmars/dnsmasq-china-list.git
         cd dnsmasq-china-list
         make raw
 
