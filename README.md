@@ -1,2 +1,2 @@
-# dnsmasq-china-list-autoupdate
-定时生成适使与smartdns的文件
+# china-list-auto-update
+定时更新生成适用与smartdns的域名文件
