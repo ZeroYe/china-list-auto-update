@@ -10,6 +10,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+    
     - name: Checkout
       uses: actions/checkout@master
   
@@ -19,14 +20,19 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install curl git wget
-    - name: Clone source code
 
+    - name: Clone source code
       run: |
         git clone --depth=1 https://github.com/felixonmars/dnsmasq-china-list.git
         cd dnsmasq-china-list
         make raw
         mkdir -p /tmp/upload/
         cp ./accelerated-domains.china.raw.txt /tmp/upload/
+
+    - name: Set variables
+      run: |
+        echo "RELEASE_NAME=Released on $(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+        echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
 
     - name: Release and upload assets
       uses: softprops/action-gh-release@v0.1.6
