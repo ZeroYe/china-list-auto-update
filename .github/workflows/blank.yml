@@ -1,5 +1,8 @@
 name: GitHub Actions Build dnsmasq-china-list-smartdns
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 22 * * *"
   push:
     branches:
       - master
@@ -57,3 +60,10 @@ jobs:
         git commit -m "${{ env.RELEASE_NAME }}"
         git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
         git push -f -u origin release
+        
+    - name: Purge jsdelivr CDN
+      run: |
+        cd /tmp/upload/ || exit 1
+        for file in $(ls); do
+          curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+        done
